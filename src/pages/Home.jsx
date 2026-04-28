@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Package, Search, LogIn } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const API_BASE_URL = 'https://order-management-backend-eight.vercel.app/api';
+
 const Home = () => {
   const [parts, setParts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ const Home = () => {
 
   const fetchParts = async () => {
     try {
-      const res = await axios.get('/api/parts');
+      const res = await axios.get(`${API_BASE_URL}/parts`);
       setParts(res.data);
       setLoading(false);
     } catch (err) {

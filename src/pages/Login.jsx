@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Lock, User, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const API_BASE_URL = 'https://order-management-backend-eight.vercel.app/api';
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/login', { username, password });
+      const res = await axios.post(`${API_BASE_URL}/auth/login`, { username, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/dashboard');

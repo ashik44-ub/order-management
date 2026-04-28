@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Plus, Edit, Trash2, LogOut, Save, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = 'https://order-management-backend-eight.vercel.app/api';
+
 const Dashboard = () => {
   const [parts, setParts] = useState([]);
   const [formData, setFormData] = useState({
@@ -21,7 +23,7 @@ const Dashboard = () => {
 
   const fetchParts = async () => {
     try {
-      const res = await axios.get('/api/parts');
+      const res = await axios.get(`${API_BASE_URL}/parts`);
       setParts(res.data);
     } catch (err) {
       console.error(err);
@@ -49,11 +51,11 @@ const Dashboard = () => {
 
     try {
       if (editingId) {
-        await axios.put(`/api/parts/${editingId}`, data, {
+        await axios.put(`${API_BASE_URL}/parts/${editingId}`, data, {
           headers: { 'x-auth-token': token }
         });
       } else {
-        await axios.post('/api/parts', data, {
+        await axios.post(`${API_BASE_URL}/parts`, data, {
           headers: { 'x-auth-token': token }
         });
       }
@@ -91,7 +93,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this record?')) {
       try {
-        await axios.delete(`/api/parts/${id}`, {
+        await axios.delete(`${API_BASE_URL}/parts/${id}`, {
           headers: { 'x-auth-token': token }
         });
         fetchParts();
