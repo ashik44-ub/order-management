@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Package, Search, LogIn } from 'lucide-react';
+import { Package, Search, LogIn, LayoutDashboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const API_BASE_URL = 'https://order-management-backend-eight.vercel.app/api';
@@ -9,8 +9,11 @@ const Home = () => {
   const [parts, setParts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) setIsLoggedIn(true);
     fetchParts();
   }, []);
 
@@ -40,9 +43,15 @@ const Home = () => {
           </h1>
           <p style={{ color: 'var(--text-muted)' }}>Real-time parts delivery tracking system</p>
         </div>
-        <Link to="/login" className="btn btn-primary">
-          <LogIn size={18} /> Admin Login
-        </Link>
+        {isLoggedIn ? (
+          <Link to="/dashboard" className="btn btn-primary" style={{ background: 'var(--success)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <LayoutDashboard size={18} /> Dashboard
+          </Link>
+        ) : (
+          <Link to="/login" className="btn btn-primary">
+            <LogIn size={18} /> Admin Login
+          </Link>
+        )}
       </header>
 
       <div className="glass-card" style={{ padding: '20px', marginBottom: '20px' }}>
