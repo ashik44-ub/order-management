@@ -28,7 +28,7 @@ const Home = () => {
     }
   };
 
-  const filteredParts = parts.filter(part => 
+  const filteredParts = parts.filter(part =>
     part.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     part.opNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
     part.partsName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -39,7 +39,7 @@ const Home = () => {
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
         <div>
           <h1 style={{ fontSize: '2.5rem', background: 'linear-gradient(to right, #6366f1, #a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            OP Parts Delivery
+            PO Parts Delivery
           </h1>
           <p style={{ color: 'var(--text-muted)' }}>Real-time parts delivery tracking system</p>
         </div>
@@ -57,9 +57,9 @@ const Home = () => {
       <div className="glass-card" style={{ padding: '20px', marginBottom: '20px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Search size={20} color="var(--text-muted)" />
-          <input 
-            type="text" 
-            placeholder="Search by OP No, Customer, or Part Name..." 
+          <input
+            type="text"
+            placeholder="Search by OP No, Customer, or Part Name..."
             style={{ border: 'none', background: 'transparent', padding: '10px' }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -104,9 +104,9 @@ const Home = () => {
                   <td><span style={{ color: part.dueAmount > 0 ? 'var(--error)' : 'var(--success)' }}>৳{part.dueAmount}</span></td>
                   <td><span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{part.deliveryDate || 'N/A'}</span></td>
                   <td>
-                    <span style={{ 
-                      padding: '4px 8px', 
-                      borderRadius: '4px', 
+                    <span style={{
+                      padding: '4px 8px',
+                      borderRadius: '4px',
                       fontSize: '0.75rem',
                       background: part.partsStatus === 'Delivered' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)',
                       color: part.partsStatus === 'Delivered' ? 'var(--success)' : 'var(--warning)',
