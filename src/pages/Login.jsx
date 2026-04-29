@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Lock, User, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const API_BASE_URL = 'https://order-management-backend-eight.vercel.app/api';
+const API_BASE_URL = '/api';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -27,7 +27,8 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.msg || 'Login failed');
+      console.error('Login error:', err.response?.data);
+      setError(err.response?.data?.msg || 'Login failed. Please check your credentials.');
     }
   };
 

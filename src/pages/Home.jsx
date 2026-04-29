@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Package, Search, LogIn, LayoutDashboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const API_BASE_URL = 'https://order-management-backend-eight.vercel.app/api';
+const API_BASE_URL = '/api';
 
 const Home = () => {
   const [parts, setParts] = useState([]);

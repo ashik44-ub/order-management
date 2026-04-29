@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://order-management-backend-eight.vercel.app',
+        target: 'http://localhost:5000',
         changeOrigin: true,
       },
     },
