@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Plus, Edit, Trash2, LogOut, Save, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const Dashboard = () => {
   const [parts, setParts] = useState([]);

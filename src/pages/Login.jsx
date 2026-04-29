@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Lock, User, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const Login = () => {
   const [username, setUsername] = useState('');
