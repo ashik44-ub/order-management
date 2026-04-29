@@ -24,9 +24,15 @@ const Dashboard = () => {
   const fetchParts = async () => {
     try {
       const res = await axios.get(`${API_BASE_URL}/parts`);
-      setParts(res.data);
+      if (Array.isArray(res.data)) {
+        setParts(res.data);
+      } else {
+        console.error('API did not return an array:', res.data);
+        setParts([]);
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Fetch error:', err);
+      setParts([]);
     }
   };
 
