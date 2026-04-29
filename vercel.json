@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://order-management-backend-eight.vercel.app/api/$1"
+      "destination": "/api/index.js"
     },
     {
       "source": "/((?!api/).*)",
