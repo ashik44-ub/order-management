@@ -18,8 +18,14 @@ const Dashboard = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log('Current Token Status:', token ? 'Token exists' : 'Token MISSING');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     fetchParts();
-  }, []);
+  }, [navigate]);
 
   const fetchParts = async () => {
     try {
