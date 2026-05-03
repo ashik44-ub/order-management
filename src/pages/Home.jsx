@@ -23,16 +23,22 @@ const Home = () => {
       if (Array.isArray(res.data)) {
         setParts(res.data);
       } else {
-        console.error('API did not return an array:', res.data);
+        console.error('API did not return an array. Data received:', res.data);
+        console.warn('The response might be HTML due to a routing error on Vercel.');
         setParts([]);
       }
-      setLoading(false);
     } catch (err) {
-      console.error('Fetch error:', err);
-      setLoading(false);
+      console.error('Fetch error:', err.message);
+      if (err.response) {
+        console.error('Status:', err.response.status);
+        console.error('Data:', err.response.data);
+      }
       setParts([]);
+    } finally {
+      setLoading(false);
     }
   };
+
 
   const filteredParts = parts.filter(part =>
     part.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
